@@ -4,6 +4,8 @@ web:
     - "80:80"
   links:
     - mysql:mysql
+  volumes:
+    - .:/var/www/
 
 mysql:
   image: tutum/mysql
