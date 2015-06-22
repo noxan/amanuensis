@@ -1,0 +1,11 @@
+web:
+  build: .
+  ports:
+    - "80:80"
+  links:
+    - mysql:mysql
+
+mysql:
+  image: tutum/mysql
+  ports:
+    - "3306:3306"
