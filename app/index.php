@@ -13,6 +13,24 @@
 
 set_include_path(getcwd());
 
+
+// ugly fix for nginx (or not apache), http://www.php.net/manual/en/function.getallheaders.php#84262
+if (!function_exists('getallheaders'))
+{
+    function getallheaders()
+    {
+           $headers = '';
+       foreach ($_SERVER as $name => $value)
+       {
+           if (substr($name, 0, 5) == 'HTTP_')
+           {
+               $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+           }
+       }
+       return $headers;
+    }
+}
+
 require_once 'classes/scripthandling/scriptLoader.php';
 require_once 'classes/config/config.php';
 require_once 'classes/errorhandling/amaException.php';
