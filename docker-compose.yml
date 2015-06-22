@@ -5,7 +5,7 @@ web:
   links:
     - mysql:mysql
   volumes:
-    - .:/var/www/
+    - app/:/var/www/
 
 mysql:
   image: tutum/mysql
